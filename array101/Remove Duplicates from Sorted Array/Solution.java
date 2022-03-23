@@ -6,8 +6,8 @@ class Solution {
             - Slow Pointer or the Write Pointer (j) 
         2. For each number which is not equal to previous number (unique number)
             - Put it in the array using Write Pointer (j)
-            - If the current value is val, then Read Pointer will be incremented
-              but Write Pointer will stay the last non-val position.
+            - If the current value is a duplicate of previous value, then Read Pointer will be incremented
+              but Write Pointer will stay at the last unique value.
         */
         
         // Slow Pointer or the Write Pointer (j) 
