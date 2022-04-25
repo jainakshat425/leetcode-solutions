@@ -10,28 +10,19 @@
  */
 class Solution {
     public ListNode middleNode(ListNode head) {
-        // Calculate the size of the linked list
-        int size = linkedListSize( head );
+        // Use two pointers slow and fast to traverse the linked list
+        // {slow} will move one node at time and {fast} will move two nodes at a time
+        ListNode slow = head, fast = head;
         
-        // Find the middle of the size
-        int middle = size/2;
-        
-        // Move the head pointer to the middle element
-        for(int i=0; i<middle; i++) {
-            head = head.next;
+        // When {fast} reaches null or fast's next node is null,
+        // at that time slow will be pointing to the middle node
+        // Keep moving the slow and fast pointer until then
+        while( fast != null && fast.next != null ) {
+            slow = slow.next;
+            fast = fast.next.next;
         }
         
-        return head;
-    }
-    
-    private int linkedListSize(ListNode head) {
-        int size = 0;
-        
-        while( head != null ) {
-            head = head.next;
-            size++;
-        }
-        
-        return size;
+        // Return the middle node
+        return slow;
     }
 }
