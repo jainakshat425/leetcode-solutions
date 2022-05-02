@@ -11,32 +11,43 @@ class LRUCache {
     }
     
     public int get(int key) {
-        
+        // If key doesn't exist, return -1
         if( !cache.containsKey( key ) ) {
             return -1;
         }
         
         DoublyLinkedList.Node node = cache.get( key );
         
-        linkedList.delete( node );
-        node = linkedList.insertNewHead( node.key, node.value );
+        /* Make this node most recent node by deleting it from it's 
+        original location in linkedlist and adding it back to head. */
         
+        // Delete node
+        linkedList.delete( node );
+        // Make it head node (most recently used)
+        node = linkedList.insertNewHead( node.key, node.value );
+        // Update the pointer in the cache to the new node
         cache.put( key, node );
         
+        // return node's value
         return node.value;
     }
     
     public void put(int key, int value) {
+        /* If key exist in cache, delete the node corresponding to key
+        and move it to head node (most recently used) */
         if( cache.containsKey( key ) ) {
             
             linkedList.delete( cache.get( key ) );
             
-        } else if( cache.size() == capacity ) {
+        } 
+        // If cache is full, delete tail node (least recently used)
+        else if( cache.size() == capacity ) {
             
             int lruKey = linkedList.deleteTail();
             cache.remove( lruKey );
         }
         
+        // Create a new head node, as this is the most recently used key
         DoublyLinkedList.Node newNode = linkedList.insertNewHead( key, value );
         cache.put(key, newNode);
     }
@@ -46,24 +57,6 @@ class DoublyLinkedList {
        
     public Node head;
     public Node tail;
-    
-    public void insert(int key, int value) {
-        
-        Node newNode = new Node(key, value);
-        
-        if( head == null ) {
-            head = newNode;
-            tail = newNode;
-            return;
-        }
-        
-        // Connect new node to tail node
-        tail.next = newNode;
-        newNode.prev = tail;
-        
-        // Make new node as the new tail node
-        tail = newNode;
-    }
     
     public int delete(Node deleteNode) {
         Node nextNode = deleteNode.next;
@@ -78,9 +71,11 @@ class DoublyLinkedList {
             prevNode.next = nextNode;
         }
         
+        // If head node is deleted, make the next node the new head node
         if( deleteNode == head ) {
             head = head.next;
         } 
+        // If tail node is deleted, make the previous node the new tail node
         if( deleteNode == tail ) {
             tail = tail.prev;
         }
@@ -112,10 +107,8 @@ class DoublyLinkedList {
     }
     
     public class Node {
-        public int key;
-        public int value;
-        public Node next;
-        public Node prev;
+        public int key, value;
+        public Node next, prev;
         
         public Node(int key, int value) {
             this.key = key;
