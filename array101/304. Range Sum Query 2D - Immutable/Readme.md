@@ -1,3 +1,5 @@
+https://leetcode.com/problems/range-sum-query-2d-immutable/
+
 <div class="content__u3I1 question-content__JfgR"><div><p>Given a 2D matrix <code>matrix</code>, handle multiple queries of the following type:</p>
 
 <ul>
