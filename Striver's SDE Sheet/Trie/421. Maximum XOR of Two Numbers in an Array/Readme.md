@@ -1,74 +1,26 @@
 https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/
 
-class Solution {
-    public int findMaximumXOR(int[] nums) {
-        int max = 0;
-        Trie xorTrie = new Trie();
-        
-        for(int num : nums) 
-            xorTrie.insert( num );
-        
-        for(int num : nums) 
-            max = Math.max(max, xorTrie.getMaxXOR(num));
-        
-        return max;
-    }
-}
+<div class="content__u3I1 question-content__JfgR"><div><p>Given an integer array <code>nums</code>, return <em>the maximum result of </em><code>nums[i] XOR nums[j]</code>, where <code>0 &lt;= i &lt;= j &lt; n</code>.</p>
 
-class Node {
-    private static int N = 2;
-    private Node[] links;
-    
-    public Node() {
-        links = new Node[N];
-    }
-    
-    public boolean contains(int bit) {
-        return links[bit] != null;
-    }
-    
-    public Node get(int bit) {
-        return links[bit];
-    }
-    
-    public void put(int bit, Node node) {
-        links[bit] = node;
-    }
-}
+<p>&nbsp;</p>
+<p><strong>Example 1:</strong></p>
 
-class Trie {
-    private Node root;
-    
-    public Trie() {
-        root = new Node();
-    }
-    
-    public void insert(int num) {
-        Node curr = root;
-        
-        for(int i=31; i>=0; i--) {
-            int bit = (num >> i) & 1;
-            
-            if( !curr.contains(bit) ) 
-                curr.put(bit, new Node());
-            
-            curr = curr.get(bit);
-        }
-    }
-    
-    public int getMaxXOR(int num) {
-        Node curr = root;
-        int max = 0;
-        
-        for(int i=31; i>=0; i--) {
-            int bit = (num >> i) & 1;
-            if( curr.contains(1 - bit) ) {
-                max = max | (1 << i);
-                curr = curr.get(1 - bit);
-            } else {
-                curr = curr.get(bit);
-            }
-        }
-        return max;      
-    }
-}
+<pre><strong>Input:</strong> nums = [3,10,5,25,2,8]
+<strong>Output:</strong> 28
+<strong>Explanation:</strong> The maximum result is 5 XOR 25 = 28.
+</pre>
+
+<p><strong>Example 2:</strong></p>
+
+<pre><strong>Input:</strong> nums = [14,70,53,83,49,91,36,80,92,51,66,70]
+<strong>Output:</strong> 127
+</pre>
+
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= nums.length &lt;= 2 * 10<sup>5</sup></code></li>
+	<li><code>0 &lt;= nums[i] &lt;= 2<sup>31</sup> - 1</code></li>
+</ul>
+</div></div>
