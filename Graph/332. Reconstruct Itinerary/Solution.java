@@ -38,8 +38,7 @@ class Solution {
 // class Solution {
         
 //     public List<String> findItinerary(List<List<String>> tickets) {
-//         Map<String,List<String>> adj = new HashMap();
-//         Map<String,Integer> out = new HashMap();
+//         Map<String,LinkedList<String>> adj = new HashMap();
 //         LinkedList<String> ans = new LinkedList();
         
 //         // Create adjaceny list
@@ -49,29 +48,22 @@ class Solution {
             
 //             adj.putIfAbsent(src, new LinkedList());
 //             adj.get(src).add(dest);
-            
-//             out.put(src, out.getOrDefault(src, 0) + 1);
 //         }
         
 //         // Sort destinations
 //         for(List<String> neighbours : adj.values())
-//             neighbours.sort( (a,b) -> b.compareTo(a) ) ;
+//             neighbours.sort( (a,b) -> a.compareTo(b) ) ;
         
 //         // DFS each path, till all the tickets are used
-//         dfs("JFK", tickets.size() + 1, adj, ans, out);
+//         dfs("JFK", adj, ans);
         
 //         return ans;
 //     }
     
-//     private void dfs(String src, int n, Map<String,List<String>> adj, LinkedList<String> ans, Map<String,Integer> out) {
-//         if( ans.size() == n )
-//             return;
+//     private void dfs(String src, Map<String,LinkedList<String>> adj, LinkedList<String> ans) {
         
-//         while( out.getOrDefault(src, 0) != 0 ) {
-//             int curr = out.get(src);
-//             out.put(src, curr - 1);
-//             dfs(adj.get(src).get(curr-1), n, adj, ans, out);
-//         }
+//         while( !adj.getOrDefault(src, new LinkedList()).isEmpty() ) 
+//             dfs(adj.get(src).removeFirst(), adj, ans);
         
 //         ans.addFirst(src);
 //     }
