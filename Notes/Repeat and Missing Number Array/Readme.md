@@ -21,12 +21,12 @@ Space - 1
 
 2. Using XOR
 
-1. xor = XOR(nums) ^ XOR(1...n) = A ^ B
-2. Find two nums in 1...n, such that xor(num1,num2) = A ^ B
-3. Group the nums and 1...n in two buckets X and Y such based on ith 
+- xor = XOR(nums) ^ XOR(1...n) = A ^ B
+- Find two nums in 1...n, such that xor(num1,num2) = A ^ B
+- Group the nums and 1...n in two buckets X and Y such based on ith 
     bit is set or not.(where i is the first set bit of xor)
-4. X and Y are the missing and the repeating number.
-5. Iterate over the array to check whether X is missing or Y is missing
+- X and Y are the missing and the repeating number.
+- Iterate over the array to check whether X is missing or Y is missing
 
 Time - n + n + n
 Space - 1
