@@ -1,6 +1,6 @@
 https://leetcode.com/problems/pascals-triangle/
 
- 1. Bottom up
+1. Bottom up
         
         - Iterate from row 1 to n using i
             - Create a list of size of the curr row
@@ -8,3 +8,6 @@ https://leetcode.com/problems/pascals-triangle/
                 - if i == 0 || j == 0 || i == j
                     - set the curr cell value to 1
                 - set value to prevRow[j-1] + prevRow[j]
+        
+        Time Comp - n*n
+        Space Comp - 1
